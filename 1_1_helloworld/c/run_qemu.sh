@@ -44,4 +44,15 @@ curl -O https://raw.githubusercontent.com/uchan-nos/mikanos-build/master/devenv/
 curl -O https://raw.githubusercontent.com/uchan-nos/mikanos-build/master/devenv/OVMF_VARS.fd
 
 # 起動
-# qemu-system-x86_64 -m 1G -drive -if=pflash
+qemu-system-x86_64 \
+    -m 1G \
+    -drive if=pflash,format=raw,readonly=on,file=./OVMF_CODE.fd \
+    -drive if=pflash,format=raw,file=./OVMF_VARS.fd \
+    -drive if=ide,index=0,media=disk,format=raw,file=$DISK_IMG \
+    -device nec-usb-xhci,id=xhci \
+    -device usb-mouse -device usb-kbd \
+    -monitor stdio \
+    $QEMU_OPTS
+
+# qemu-system-x86_64 -drive if=pflash,file=./OVMF_CODE.fd -drive if=pflash,file=./OVMF_VARS.fd -hda $DISK_IMG
+
