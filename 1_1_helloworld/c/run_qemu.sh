@@ -39,6 +39,9 @@ case "$OS" in
     ;;
 esac
 
+# OVMFファイルを取得
+curl -O https://raw.githubusercontent.com/uchan-nos/mikanos-build/master/devenv/OVMF_CODE.fd
+curl -O https://raw.githubusercontent.com/uchan-nos/mikanos-build/master/devenv/OVMF_VARS.fd
 
 # 起動
 # qemu-system-x86_64 -m 1G -drive -if=pflash
