@@ -2,6 +2,13 @@
     "files.associations": {
         "uefilib.h": "c",
         "uefi.h": "c",
-        "uefispec.h": "c"
-    }
+        "uefispec.h": "c",
+        "printlib.h": "c",
+        "loadedimage.h": "c",
+        "uefibootservicestablelib.h": "c",
+        "simplefilesystem.h": "c",
+        "blockio.h": "c",
+        "diskio2.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Enabled"
 }
