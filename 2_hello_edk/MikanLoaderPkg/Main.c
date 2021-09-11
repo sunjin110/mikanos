@@ -1,11 +1,11 @@
-#include <Uefi.h>
-#include <Library/UefiLib.h>
-#include <Library/UefiBootServicesTableLib.h>
-#include <Library/PrintLib.h>
-#include <Protocol/LoadedImage.h>
-#include <Protocol/SimpleFileSystem.h>
-#include <Protocol/DiskIo2.h>
-#include <Protocol/BlockIo.h>
+#include  <Uefi.h>
+#include  <Library/UefiLib.h>
+#include  <Library/UefiBootServicesTableLib.h>
+#include  <Library/PrintLib.h>
+#include  <Protocol/LoadedImage.h>
+#include  <Protocol/SimpleFileSystem.h>
+#include  <Protocol/DiskIo2.h>
+#include  <Protocol/BlockIo.h>
 
 // MemoryMap 独自定義のメモリマップ
 struct MemoryMap {
@@ -45,7 +45,7 @@ EFI_STATUS EFIAPI UefiMain(EFI_HANDLE image_handle, EFI_SYSTEM_TABLE* system_tab
         descriptor_version: 0,
     };
 
-    
-    
 
+    
+    return EFI_SUCCESS;
 }

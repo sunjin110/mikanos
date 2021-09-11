@@ -8,7 +8,8 @@
         "uefibootservicestablelib.h": "c",
         "simplefilesystem.h": "c",
         "blockio.h": "c",
-        "diskio2.h": "c"
+        "diskio2.h": "c",
+        "*.bk": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }
