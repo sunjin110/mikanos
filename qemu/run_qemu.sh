@@ -1,6 +1,7 @@
 #!/bin/sh -e
 
-EFI_FILE=BOOTX64.EFI
+# EFI_FILE=BOOTX64.EFI
+EFI_FILE=$1
 DISK_IMG=./disk.img
 MOUNT_POINT=./mnt
 OS=`uname`
