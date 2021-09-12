@@ -34,21 +34,19 @@ EFI_STATUS OpenRootDir(EFI_HANDLE image_handle, EFI_FILE_PROTOCOL** root) {
 
     gBS->OpenProtocol(
         image_handle,
-        &gEfiLoadedImageDevicePathProtocolGuid,
+        &gEfiLoadedImageProtocolGuid,
         (VOID**)&loaded_image,
         image_handle,
         NULL,
-        EFI_OPEN_PROTOCOL_BY_HANDLE_PROTOCOL,
-    );
+        EFI_OPEN_PROTOCOL_BY_HANDLE_PROTOCOL);
 
-    gBs->OpenProtocol(
+    gBS->OpenProtocol(
         loaded_image->DeviceHandle,
         &gEfiSimpleFileSystemProtocolGuid,
         (VOID**)&fs,
         image_handle,
         NULL,
-        EFI_OPEN_PROTOCOL_BY_HANDLE_PROTOCOL,
-    );
+        EFI_OPEN_PROTOCOL_BY_HANDLE_PROTOCOL);
 
     return EFI_SUCCESS;
 }
@@ -104,8 +102,7 @@ EFI_STATUS SaveMemoryMap(struct MemoryMap* map, EFI_FILE_PROTOCOL* file) {
             GetMemoryTypeUnicode(desc->Type),
             desc->PhysicalStart,
             desc->NumberOfPages,
-            desc->Attribute & 0xffffflu,
-        );
+            desc->Attribute & 0xffffflu);
 
         file->Write(file, &len, buf);
     }
@@ -121,12 +118,12 @@ EFI_STATUS EFIAPI UefiMain(EFI_HANDLE image_handle, EFI_SYSTEM_TABLE* system_tab
     // MemoryMapの取得
     CHAR8 memmap_buf[4096 * 4];
     struct MemoryMap memmap = {
-        buffer_size: sizeof(memmap_buf),
-        buffer: memmap_buf,
-        map_size: 0,
-        map_key: 0,
-        descriptor_size: 0,
-        descriptor_version: 0,
+        sizeof(memmap_buf),
+        memmap_buf,
+        0,
+        0,
+        0,
+        0,
     };
     GetMemoryMap(&memmap);
 
@@ -135,9 +132,7 @@ EFI_STATUS EFIAPI UefiMain(EFI_HANDLE image_handle, EFI_SYSTEM_TABLE* system_tab
     OpenRootDir(image_handle, &root_dir);
 
     EFI_FILE_PROTOCOL* memap_file;
-    root_dir->Open(root_dir, &memmap_file, L"\\memmap", EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE | EFI_FILE_MODE_CREATE, 0);
-
-    
+    root_dir->Open(root_dir, &memap_file, L"\\memmap", EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE | EFI_FILE_MODE_CREATE, 0);
 
     return EFI_SUCCESS;
 }
