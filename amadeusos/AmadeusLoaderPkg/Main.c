@@ -166,6 +166,7 @@ EFI_STATUS EFIAPI UefiMain(EFI_HANDLE image_handle,
     kernel_file->Read(kernel_file, &kernel_file_size, (VOID*)kernel_base_addr);
     Print(L"Kernel: 0x%0lx (%lu bytes)\n", kernel_base_addr, kernel_file_size);
 
+    // ブートサービスを停止させる処理
     EFI_STATUS status;
     status = gBS->ExitBootServices(image_handle, memmap.map_key);
     if (EFI_ERROR(status)) {
@@ -181,6 +182,7 @@ EFI_STATUS EFIAPI UefiMain(EFI_HANDLE image_handle,
         }
     }
 
+    // カーネルを起動させる処理
     UINT64 entry_addr = *(UINT64*)(kernel_base_addr + 24);
 
     typedef void EntryPointType(void);
