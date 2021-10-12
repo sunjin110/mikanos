@@ -2,6 +2,7 @@
 
 # EFI_FILE=BOOTX64.EFI
 EFI_FILE=$1
+ANOTHER_FILE=$2
 DISK_IMG=./disk.img
 MOUNT_POINT=./mnt
 OS=`uname`
@@ -25,6 +26,7 @@ case "$OS" in
         then
             sudo cp $ANOTHER_FILE $MOUNT_POINT/
         fi
+        sleep 0.5
         sudo hdiutil detach $MOUNT_POINT
     ;;
     "Linux" )
@@ -36,6 +38,7 @@ case "$OS" in
         then
             sudo cp $ANOTHER_FILE $MOUNT_POINT/
         fi
+        sleep 0.5
         sudo umount $MOUNT_POINT
     ;;
 esac

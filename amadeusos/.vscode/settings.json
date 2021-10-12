@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "diskio2.h": "c",
+        "printlib.h": "c"
+    }
+}
